@@ -1,0 +1,71 @@
+package miracom.프로원정대13기.W2D4;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.PriorityQueue;
+import java.util.StringTokenizer;
+
+public class 기본_알뜰기차여행 {
+	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	static StringTokenizer st;
+	static class Edge implements Comparable<Edge>{
+		int to;
+		int cost;
+		Edge(int to, int cost){
+			this.to = to;
+			this.cost = cost;
+		}
+		@Override
+		public int compareTo(Edge o) {
+			if (cost < o.cost) return -1;
+			if (cost > o.cost) return 1;
+			return 0;
+		}
+	}
+	static int n, t;
+	static ArrayList<Edge>[] arr;
+	static void dijkstra(int start) {
+		int[] dist = new int[n];
+		for (int i=0; i<n; i++)
+			dist[i] = Integer.MAX_VALUE;
+		dist[start] = 0;
+		PriorityQueue<Edge> pq = new PriorityQueue<>();
+		pq.add(new Edge(start, 0));
+		
+		while(!pq.isEmpty()) {
+			Edge now = pq.remove();
+			if(now.to == n-1) {
+				System.out.println(now.cost);
+				return; 
+			}
+			if (dist[now.to] < now.cost)
+				continue;
+			
+			for (Edge next : arr[now.to]) {
+				int nc = dist[now.to] + next.cost;
+				if (dist[next.to] <= nc) continue;
+				dist[next.to] = nc;
+				pq.add(new Edge(next.to, nc));
+			}
+		}
+		System.out.println("impossible");
+	}
+	public static void main(String[] args) throws Exception {
+		st = new StringTokenizer(br.readLine());
+		n = Integer.parseInt(st.nextToken());
+		t = Integer.parseInt(st.nextToken());
+		arr = new ArrayList[n];
+		for (int i=0; i<n; i++)
+			arr[i] = new ArrayList<>();
+		for (int i=0; i<t; i++) {
+			st = new StringTokenizer(br.readLine());
+			int from = Integer.parseInt(st.nextToken());
+			int to = Integer.parseInt(st.nextToken());
+			int cost = Integer.parseInt(st.nextToken());
+			
+			arr[from].add(new Edge(to, cost));
+		}
+		dijkstra(0);
+	}
+}
