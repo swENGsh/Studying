@@ -1,0 +1,46 @@
+package miracom.프로원정대10기.첫째주._1일;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
+
+public class _2_연쇄폭탄 {
+	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	static StringTokenizer st;
+	public static void main(String[] args) throws Exception{
+		int n = Integer.parseInt(br.readLine());
+		int[][] bombInfo = new int[n][n];
+		for (int i=0; i<n; i++) {
+			st = new StringTokenizer(br.readLine());
+			for (int j=0; j<n; j++) {
+				bombInfo[i][j] = Integer.parseInt(st.nextToken());
+			}
+		}
+		List<Integer> bombList = new ArrayList<Integer>();
+		for (int i=0; i<n*n+1; i++) {
+			bombList.add(i+1);
+		}
+		int[] dr = {-1, 1, 0, 0};
+		int[] dc = {0, 0, -1, 1};
+		int ans;
+		
+		while(bombList.length != 0) {
+			int cur = bombList[0];
+			ans = cur;
+			for (int r = 0;r <n; r++) {
+				for (int c = 0; c<n; c++) {
+					if (bombInfo[r][c] == cur) {
+						bombInfo[r][c] = -9;
+						for (int i: bombList) {
+							if (i == cur):
+								
+						}
+					}
+				}
+			}
+		}
+	}
+
+}

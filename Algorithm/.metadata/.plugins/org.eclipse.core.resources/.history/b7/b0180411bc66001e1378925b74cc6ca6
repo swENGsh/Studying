@@ -1,0 +1,24 @@
+package miracom.프로원정대10기.첫째주._1일;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class _2_연쇄폭탄 {
+	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	static StringTokenizer st;
+	public static void main(String[] args) throws Exception{
+		int n = Integer.parseInt(br.readLine());
+		int[][] bombInfo = new int[n][n];
+		for (int i=0; i<n; i++) {
+			st = new StringTokenizer(br.readLine());
+			for (int j=0; j<n; j++) {
+				bombInfo[i][j] = Integer.parseInt(st.nextToken());
+			}
+		}
+		int[] bombList = new int[n*n+1];
+		int[] dr = {-1, 1, 0, 0};
+		int[] dc = {0, 0, -1, 1};
+	}
+
+}
